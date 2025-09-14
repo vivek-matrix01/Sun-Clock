@@ -51,20 +51,22 @@
             padding: 0;
             
         }
-        .time-label{width: 10rem;
+
+        .time-label{
+            width: 12rem;
             font-size: 2rem;
             height:10rem;
             position: absolute;
             top: 30%;
-           left:40%;
+            left: 40%;
             backdrop-filter: blur(5px);
             border-radius: 15px;
             text-align: center;
-            ;
+            
             border: 1px solid rgba(255, 255, 255, 0.2);
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
              font-family: 'Inter', 'Segoe UI', sans-serif;
-  color: #110909;
+             color: #110909;
 
         }
         h1{font-size: 4rem;
