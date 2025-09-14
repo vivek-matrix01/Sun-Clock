@@ -19,6 +19,8 @@ window.addEventListener('resize',()=>{
     radius=centreX;
 });
 
+console.log("Vishal");
+
 function sunAnimate(maxAngle){
     let days=0;
     sun.style.display='block';
