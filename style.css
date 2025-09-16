@@ -1,12 +1,48 @@
 
-        body{background-image: url(bg.jpg);
+        body{
+            height: 100vh;
+            margin: 0;
+             
+            
              background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
+             
+             background-size: cover;
+             background-position: center;
+             background-attachment: fixed;
+           
+         
+
         
        }
-        html{font-size: 62.5%;}
+      button{
+        background-color: #d6be5e;
+        font-weight: 500;
+        padding:2px 4px;
+        border-radius: 3px;
+       }
+       body::after,body::before{
+        content: '';
+        position: absolute;
+      inset: 0;
+    
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      transition: opacity 2s ease-in-out;
+        z-index: -20;
+       }
+       body::before{
+        background-image: url('bg7.jpg');
+        opacity: 1;
+       }
+         body::after{
+            background-image: url('bg3.jpg');
+            opacity: 0;}
+        
+     body.change::before{opacity: 0;}
+     body.change::after{opacity: 1;}
+
+        html{font-size: 70%;}
         .container{
             text-align: center;
             
@@ -37,10 +73,26 @@
 
 
         }
+        .moon{
+            background-color: #A9A9A9; /* Eclipse Charcoal */
+             border: 2px solid #C0C0C0; /* Moonlight Silver */
+            box-shadow: 0 0 12px #C0C0C0, 0 0 24px #B0C4DE;
+
+             position: absolute;
+           
+            height: 10rem;
+            width: 10rem;
+            border-radius: 50%;
+           display: none;
+           
+           
+            z-index:-11
+
+        }
      
         .parent{position: relative;
             
-            height:80vh;
+            height:65vh;
             width:100vw;
             
             
@@ -52,25 +104,92 @@
             
         }
 
-        .time-label{
-            width: 12rem;
-            font-size: 2rem;
-            height:10rem;
-            position: absolute;
-            top: 30%;
-            left: 40%;
-            backdrop-filter: blur(5px);
-            border-radius: 15px;
-            text-align: center;
-            
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-             font-family: 'Inter', 'Segoe UI', sans-serif;
-             color: #110909;
+     
+       
 
-        }
         h1{font-size: 4rem;
             color: white;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
             font-family: 'Inter', 'Segoe UI', sans-serif;
         }
+ .time-label {
+  width: 300px;
+  margin: auto;
+  background: linear-gradient(135deg, #dde6e4, #ACB6E5);
+  border-radius: 20px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  color: #fff;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Card hover effect */
+.time-label:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+}
+
+.dayDate, .place, .temp, .status, .air {
+  background: rgba(255,255,255,0.15);
+  padding: 8px 12px;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Hover effect on each block */
+.dayDate:hover, 
+.place:hover, 
+.temp:hover, 
+.status:hover, 
+.air:hover {
+  transform: scale(1.08);
+  color:#131004;
+  background: rgba(255,255,255,0.3);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
+
+/* Content section */
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 15px 0;
+}
+
+.temp {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.status {
+  font-size: 1rem;
+}
+
+/* Footer */
+.footer {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+@media screen and (max-width: 650px) {
+    .parent{
+        height: 45vh;
+    }
+}

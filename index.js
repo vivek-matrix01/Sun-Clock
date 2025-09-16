@@ -1,7 +1,12 @@
 
-const greet=document.querySelector('#greet');
-const day=document.querySelector('#days');
+
+const dayDate=document.querySelector(".dayDate");
+const place=document.querySelector(".place");
+const temp=document.querySelector(".temp");
+const status=document.querySelector(".status");
+const air=document.querySelector(".air");
 const sun=document.querySelector('.sun');
+const moon=document.querySelector('.moon');
 let input=document.querySelector('#time');
 let height=document.querySelector('.parent').offsetHeight;
 let width=document.querySelector('.parent').offsetWidth;
@@ -21,51 +26,66 @@ window.addEventListener('resize',()=>{
     radius=centreX;
 });
 
-console.log("Vishal");
+
 
 function sunAnimate(maxAngle){
-    let days=0;
+   
     sun.style.display='block';
-    const x=centreX-radius*Math.cos(angle%pie);
-    const y=centreY-(radius-Math.max(45, Math.min(sun.offsetHeight, 70)))*Math.sin(angle%pie);
-    sun.style.left=`${x-sun.offsetWidth/2}px`;
-    sun.style.top=`${y}px`;
+    moon.style.display='block';
+    const x1=centreX-radius*Math.cos(angle);
+    const y1=centreY-(radius-Math.max(45, Math.min(sun.offsetHeight, 70)))*Math.sin(angle);
+    const x2=centreX+radius*Math.cos(angle);
+    const y2=centreY+(radius-Math.max(45, Math.min(moon.offsetHeight, 70)))*Math.sin(angle);
+
+    sun.style.left=`${x1-sun.offsetWidth/2}px`;
+    sun.style.top=`${y1}px`;
+    moon.style.left=`${x2-moon.offsetWidth/2}px`;
+    moon.style.top=`${y2}px`;
+
+
     sun.style.width = `${window.innerWidth * 0.1}px`; 
 sun.style.height = `${window.innerWidth * 0.1}px`;
-    if(angle%pie>=0 && angle%pie<=pie/3) 
-        {sun.backgroundColor='#FDECA7';
-             sun.boxShadow= '0 0 20px 10px #FFD700';
-             greet.innerText='Good Morning !';
-        }
-    if(angle%pie>pie/3 && angle%pie<=pie/2) 
-        {sun.backgroundColor='#FDECA7';
-             sun.boxShadow= '0 0 20px 10px #d1c375ff';
-             greet.innerText='Good Afternoon !';
-        }
-    if(angle%pie>pie/2 && angle%pie<=3*pie/4) 
-        {sun.backgroundColor='#FDECA7';
-             sun.boxShadow= '0 0 20px 10px #2c2c2bff';
-             greet.innerText='Good Evening !';
-        }
-       
-        days=time/24;
-       day.innerText=`${days.toFixed(2)} day`;
-  
+    moon.style.width = `${window.innerWidth * 0.1}px`; 
+moon.style.height = `${window.innerWidth * 0.1}px`;
+
+       if(angle%(2*pie)<=pie && angle%(2*pie)>0){
+        document.body.classList.add("change");
+       }
+       else{
+         document.body.classList.remove("change");
+       }
+
+
     if(angle<=maxAngle){
-        angle+=0.009;
+        angle+=0.008;
         requestAnimationFrame(()=>sunAnimate(maxAngle));
     }
 
 }
 
-document.addEventListener('input',()=>{
+
+
+const startAnimation=(dateandtime,city,state,country,temp_c,condition,airquality)=>{
     angle=0;
-     time=parseInt(input.value);
+    time=parseInt(dateandtime.split(" ")[1].split(":")[0]);
+    const date=parseInt(dateandtime.split(" ")[0]);
+  
     
-    const maxAngle=(pie/24)*time;
+    dayDate.innerHTML=`${time}${time>=12?' PM':' AM'}`;
+    place.innerHTML=`${country} <br>${city}`;
+    temp.innerHTML=`${temp_c} *C`
+    status.innerHTML=`${condition}`
+    let airstatus=``;
+    if(parseInt(airquality)<=2){airstatus=`Good`}
+    else if(parseInt(airquality<=4)){airstatus=`Moderate`}
+    else{airstatus=`Poor`}
+    air.innerHTML=`Air Quality=${airquality} ${airstatus}`;
+
+
+    const maxAngle=(pie/12)*time;
     if(time<=0){return ;}
     sunAnimate(maxAngle);
 
     
  
-});
+};
