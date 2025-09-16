@@ -4,7 +4,7 @@
 const APIKEY=`cff6c5c8683a4ea793395558251509`;
 const userInput=document.getElementById('userInput');
 
-let baseurl=`http://api.weatherapi.com/v1/current.json?key=${APIKEY}&q=&aqi=yes`;
+let baseurl=`https://api.weatherapi.com/v1/current.json?key=${APIKEY}&q=&aqi=yes`;
 
 
 
